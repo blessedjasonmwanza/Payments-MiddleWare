@@ -16,11 +16,15 @@ public class MobileMoney extends PaymentsMiddleware{
                             // DO NOT TOUCH THIS, I'M STILL WORKING ON IT
     
                             case 'sparco':
-                                $headers = 'X-PUB-KEY: '.$this->config['public_key'];
-                                $data = ["payload" => $this->payload];
-                                $url = $this->$api_endpoints[$provider][$this->action];
-                                    return $this->httpPost($url, $data, $headers, 'json');
-                                break;
+                                try {
+                                    $headers = 'X-PUB-KEY: '.$this->config['public_key'];
+                                    $data = ["payload" => $this->payload];
+                                    $url = $this->$api_endpoints[$provider][$this->action];
+                                        return $this->httpPost($url, $data, $headers, 'json');
+                                    break;
+                                } catch (\Throwable $th) {
+                                    $this->error(0, $error->getMessage(), ["catch" => (array)$th, error_get_last()], "array");
+                                }
                             default:
                                 return $this->error(0, "We're still working on other functionalities under this provider.", error_get_last(), "array");
                                 break;

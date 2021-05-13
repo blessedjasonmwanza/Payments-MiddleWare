@@ -7,6 +7,6 @@ __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
 --The World
 
 # Currently in Development
- *Sparco*
+ - *Sparco*
 # Status
  - Unstable (Not ready for use)

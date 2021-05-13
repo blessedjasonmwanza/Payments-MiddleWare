@@ -12,14 +12,14 @@ class PaymentsMiddleware{
     public function __construct($private_key_token){
         $this->config["private_key"] = $private_key_token;
     }
-    function config($array){
+    function config($settings){
         try {
-            if(is_array($params)){
-                foreach ($array as $key => $value{
+            if(is_array($settings)){
+                foreach ($settings as $key => $value{
                     $this->config[strval($key)] => $value;
                 }
             }else{
-                return $this->error(0, "Config params must be an array", error_get_last(), "array");
+                return $this->error(0, "Config settings must be an array", error_get_last(), "array");
             }
         } catch (\Throwable $th) {
             return $this->error(0, "Config Error", ["catch" => (array)$th, error_get_last()], "array");
