@@ -60,7 +60,7 @@ $url="https://samafricaonline.com/sam_pay/public/paymentconfirmation";
 $appkey="Replace with your Key"; 
 $authkey="Replace with your Key"; 
 $token=$token; 
-$ordered="The order ID”; 
+$ordered="The order ID"; 
 $ch=curl_init($url); 
 //Setup request to send JSON via POST  
 $data=array(
@@ -70,6 +70,7 @@ $data=array(
     'token'=>$token); 
     $payload=json_encode($data); 
 //Attach encoded JSON string to the POST fields 
+
 curl_setopt($ch,CURLOPT_POSTFIELDS,$payload); 
 //Set the content type to application/json 
 curl_setopt($ch,CURLOPT_HTTPHEADER,array('Content-Type:application/json')); 
@@ -78,4 +79,14 @@ curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 //Execute the POST request 
 $result=curl_exec($ch); 
 print_r($result);
-You can now complete the records on your App or Website according to the response 
+//You can now complete the records on your App or Website according to the response 
+
+$apiresponse = json_decode($result); 
+$responsestatus = $apiresponse->status; 
+$responsemessage = $apiresponse->message; 
+//You are looking for status 200 
+if($responsestatus=='200'){ 
+//Payment was made 
+}else{ 
+//Payment was not successful or has not been made 
+}
