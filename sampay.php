@@ -32,3 +32,12 @@ curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 //Execute the POST request 
 $result=curl_exec($ch); 
 print_r($result);
+
+
+//Attach encoded JSON string to the POST fields 
+
+$apiresponse = json_decode($result); 
+$responsestatus = $apiresponse->status; 
+$responsemessage = $apiresponse->message; 
+//You are looking for status 200 
+if($responsestatus=='200'){ 
