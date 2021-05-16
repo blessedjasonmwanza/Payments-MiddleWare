@@ -52,6 +52,30 @@ header("Location: https://samafricaonline.com/sam_pay/public/merchantpayment?tok
 //Sampay only accepts verified tokens to process payments from external requests. 
 //https://samafricaonline.com/sam_pay/public/merchantpayment?token=token 
 //The user will have options to pay or to cancel the order. 
-//Whatever option is chosen, Sampay will then offer a redirect to your return URL supplied during the App/Website Registration. We will then return the token and pass an additional parameter “response” 
+//Whatever option is chosen, Sampay will then offer a redirect to your return URL supplied during the App/Website Registration. We will then return the token and pass an additional parameter "response” 
 //E.g. url@yourdomain.com?token=token&response=response 
 //The response is either true or false 
+
+$url="https://samafricaonline.com/sam_pay/public/paymentconfirmation"; 
+$appkey="Replace with your Key"; 
+$authkey="Replace with your Key"; 
+$token=$token; 
+$ordered="The order ID”; 
+$ch=curl_init($url); 
+//Setup request to send JSON via POST  
+$data=array(
+    'AppKey'=>$appkey,
+    'AuthKey'=>$authkey, 
+    'orderID'=>$ordered, 
+    'token'=>$token); 
+    $payload=json_encode($data); 
+//Attach encoded JSON string to the POST fields 
+curl_setopt($ch,CURLOPT_POSTFIELDS,$payload); 
+//Set the content type to application/json 
+curl_setopt($ch,CURLOPT_HTTPHEADER,array('Content-Type:application/json')); 
+//Return response instead of outputting 
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,true); 
+//Execute the POST request 
+$result=curl_exec($ch); 
+print_r($result);
+You can now complete the records on your App or Website according to the response 
