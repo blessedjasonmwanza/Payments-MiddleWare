@@ -41,3 +41,9 @@ $responsestatus = $apiresponse->status;
 $responsemessage = $apiresponse->message; 
 //You are looking for status 200 
 if($responsestatus=='200'){ 
+
+//A successful request will generate a payment token that can be used when your customer visits the Sampay website. //The token must be passed to Sampay as a parameter 
+$token = $responsemessage;  
+header("Location: https://samafricaonline.com/sam_pay/public/merchantpayment?token=$token"); }else{ 
+//If status is not 200, there is an error in the request. The request was denied. 
+} 
