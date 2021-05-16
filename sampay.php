@@ -10,3 +10,14 @@ $ordertotal=1;
 $currency="ZMW"; 
 $ch=curl_init($url); 
 
+//Setup request to send JSON via POST  
+$data=array(
+    'AppKey'=>$appkey,
+    'AuthKey'=>$authkey,
+    'OrderID'=>$orderID,
+    'OrderName'=>$ordername,
+    'OrderDetails'=>$orderdetails,
+    'Or derTotal'=>$ordertotal,
+    'Currency'=>$currency); 
+$payload=json_encode($data);
+
