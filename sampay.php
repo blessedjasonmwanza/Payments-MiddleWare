@@ -47,3 +47,11 @@ $token = $responsemessage;
 header("Location: https://samafricaonline.com/sam_pay/public/merchantpayment?token=$token"); }else{ 
 //If status is not 200, there is an error in the request. The request was denied. 
 } 
+
+//Close cURL resource
+//Sampay only accepts verified tokens to process payments from external requests. 
+//https://samafricaonline.com/sam_pay/public/merchantpayment?token=token 
+//The user will have options to pay or to cancel the order. 
+//Whatever option is chosen, Sampay will then offer a redirect to your return URL supplied during the App/Website Registration. We will then return the token and pass an additional parameter “response” 
+//E.g. url@yourdomain.com?token=token&response=response 
+//The response is either true or false 
