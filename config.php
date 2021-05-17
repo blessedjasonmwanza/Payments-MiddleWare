@@ -1,28 +1,29 @@
 <?php
 class PaymentsMiddleware{
     protected $private_key;
+    public $config = [];
     protected $payload;
+    var $response;
     var $needs_payload = ['sparco'];
     protected $api_endpoints = [
         "sparco" => [
             "collect" => "https://live.sparco.io/gateway/api/v1/momo/debit"
         ]
     ];
-    var $config = [];
     public function __construct($private_key_token){
         $this->config["private_key"] = $private_key_token;
     }
     function config($settings){
         try {
             if(is_array($settings)){
-                foreach ($settings as $key => $value{
-                    $this->config[strval($key)] => $value;
+                foreach ($settings as $key => $value){
+                    $this->config[$key] = $value;
                 }
             }else{
                 return $this->error(0, "Config settings must be an array", error_get_last(), "array");
             }
         } catch (\Throwable $th) {
-            return $this->error(0, "Config Error", ["catch" => (array)$th, error_get_last()], "array");
+            return $this->error(0, "Config Error", ["catch" => (array)$th, "last_error" => error_get_last()], "array");
         }
     }
     // post function just like $.post for jquery... now in PHP :-)
@@ -74,7 +75,7 @@ class PaymentsMiddleware{
             "code" => $code,
             "msg" => $msg,
             "debug" => $debug
-        ]
+        ];
         switch ($data_type) {
             case 'array':
                 $response = $response;
@@ -91,3 +92,4 @@ class PaymentsMiddleware{
 
     }
 }
+?>
