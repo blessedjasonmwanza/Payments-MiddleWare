@@ -1,12 +1,10 @@
 <?php
-// NB: This code has not been tested yet. Still building the file structure.
 try {
-    include "config.php";
-    include "mobile_money.php";
+    include "PaymentsMiddleware.php";
     $key = "1241safwr13da1231sa";
     $pub_key = "13esar23eqdwax0j23d";
     $payments = new PaymentsMiddleware($key);
-    // Collect
+    // Collect configuration
     $payments->config([
         'use' => "sparco",
         'amount' => 10.00,
@@ -20,13 +18,9 @@ try {
         'deduct_from' => "0900000000",
         'charge_client' => true
     ]);
-    // TODO figure out why the class below cannot inherit values from the payments class.
-    $pay = new MobileMoney("collect");
-    print_r($pay->config);
-    // var_dump($pay);
+    $collect_money_response = $payments->mobile_money("collect");
+    echo $payments->response;
 } catch (\Throwable $th) {
-    //throw $th;
-    print($th);
+    var_dump($th);
 }
-
 ?>
