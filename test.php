@@ -1,10 +1,10 @@
 <?php
 try {
     include "PaymentsMiddleware.php";
-    $key = "1241safwr13da1231sa";
-    $pub_key = "13esar23eqdwax0j23d";
+    $key = "1241safwr13da1231sa"; // Your Private Sparco Key
+    $pub_key = "13esar23eqdwax0j23d"; //Your Public Sparco Key
     $payments = new PaymentsMiddleware($key);
-    // Collect configuration
+    // USING Sparco, configure to Collect Cash from a phone number 
     $payments->config([
         'use' => "sparco",
         'amount' => 10.00,
@@ -18,7 +18,8 @@ try {
         'deduct_from' => "0900000000",
         'charge_client' => true
     ]);
-    $collect_money_response = $payments->mobile_money("collect");
+    $payments->mobile_money("collect");
+    // return last registered response;
     echo $payments->response;
 } catch (\Throwable $th) {
     var_dump($th);
