@@ -8,5 +8,6 @@ __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
 
 # Currently in Development
  - *Sparco*
+ - *MstarCard, VISA, ECOBANK QR CODE payments*
 # Status
  - Unstable ([Alpha] Ready for Testing.)
