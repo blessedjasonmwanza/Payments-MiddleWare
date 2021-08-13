@@ -5,5 +5,7 @@ __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
 
 - Africa
 - The World
+
 > Checkout **PhP7** branch, it has latest PHP supported payments updates
+
 > Checkout **js** branch, it has latest JS supported payments updates
