@@ -7,7 +7,10 @@ __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
 --The World
 
 # Currently in Development
- - *Sparco*
- - *MstarCard, VISA, ECOBANK QR CODE payments*
+ - *MasterCard, VISA, ECOBANK QR CODE payments*
 # Status
  - Unstable ([Alpha] Ready for Testing.)
+
+# LIVE & READY
+ - *Sparco* // for AIRTEL, MTN, & ZAMTEL  Instant mobile Money collections
+ > Check **test_mobilemoney_zambia_doc.php** guide or **test_mobilemoney_zambia** 
