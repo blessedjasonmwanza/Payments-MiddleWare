@@ -13,4 +13,4 @@ __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
 
 # LIVE & READY
  - *Sparco* // for AIRTEL, MTN, & ZAMTEL  Instant mobile Money collections
- > Check **test_mobilemoney_zambia_doc.php** guide or **test_mobilemoney_zambia** 
+ > For references on how to use MObile Money Payments, Check **test_mobilemoney_zambia_doc.php**, or **test_mobilemoney_zambia.php** 
