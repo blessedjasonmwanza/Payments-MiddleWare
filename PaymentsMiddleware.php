@@ -13,12 +13,14 @@
     class PMMobileMoneyZM{
         var $public_key;
         var $private_key;
-        var $debit_url = "https://live.sparco.io/gateway/api/v1/momo/debit";
-        var $payment_verification_url = "https://live.sparco.io/gateway/api/v1/transaction/query?reference=";
+        var $debit_url;
+        var $payment_verification_url;
         var $currency = "ZMW";
-        function __construct($private_key, $public_key){
+        function __construct($private_key, $public_key, $mode="live"){
             $this->public_key = $public_key;
             $this->private_key = $private_key;
+            $this->debit_url =  = "https://".$mode.".sparco.io/gateway/api/v1/momo/debit";
+            $this->payment_verification_url = "https://".$mode.".sparco.io/gateway/api/v1/transaction/query?reference=";
         }
         function http_post($method="POST", $url, $headers=null, $body_fields=null){
             $curl = curl_init();
