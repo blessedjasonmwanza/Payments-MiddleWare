@@ -10,8 +10,7 @@ require 'PaymentsMiddleware.php';
 $private_key = "";//your sparco private key
 $public_key = ""; //your sparco public (pub) key
 $currency = "ZMW"; //Transaction currency (Optional)
-$mode = "live"; //default is live. Use sandbox during development/test and live when online/production
-$mobile_money = new PMMobileMoneyZM($private_key, $public_key, $mode);
+$mobile_money = new PMMobileMoneyZM($private_key, $public_key);
 $mobile_money->currency = $currency; // (optional) 
 
 /**
@@ -23,7 +22,7 @@ $first_name = ""; //customer first name e.g John
 $last_name = ""; //customer last name e.g Smith
 $email = ""; //customer email. e.g johnsmith@website.com
 $amount = 0.00; //Amount to be deducted from customer phone number mobile money wallet
-$wallet_phone_number = ""; //customer mobile money number NOTE: it must be 10 characters only
+$wallet_phone_number = ""; //customer mobile money number NOTE: it must be 10 characters exactly. e.g 09xxxxxxxx
 
 // Request and Trigger Payment for customer to confirm
 // A prompt confirmation will appear on customers phone to confirm payment

@@ -1,4 +1,5 @@
 <?php
+use \Firebase\JWT\JWT;
 /**
  * @category Payments
  * @package  PaymentsMiddleware
@@ -6,7 +7,7 @@
  * @license  http://opensource.org/licenses/MIT
  * @link     https://github.com/blessedjasonmwanza/Payments-MiddleWare
  */
-    
+
     /** FEATURE INFO
      * Deduct/accept instant payments from all Zambian Networks (ZAMTEL, AIRTEL, MTN)
      */
@@ -19,7 +20,7 @@
         function __construct($private_key, $public_key, $mode="live"){
             $this->public_key = $public_key;
             $this->private_key = $private_key;
-            $this->debit_url =  = "https://".$mode.".sparco.io/gateway/api/v1/momo/debit";
+            $this->debit_url = "https://".$mode.".sparco.io/gateway/api/v1/momo/debit";
             $this->payment_verification_url = "https://".$mode.".sparco.io/gateway/api/v1/transaction/query?reference=";
         }
         function http_post($method="POST", $url, $headers=null, $body_fields=null){
@@ -40,7 +41,7 @@
             curl_close($curl);
             return $response;
         }
-        function request_payment($first_name, $last_name, $email, $amount, $wallet_phone_number, $description){
+        function request_payment($first_name, $last_name, $email, $amount, $wallet_phone_number, $item_description = ""){
             $transaction_reference = $wallet_phone_number.'_'.time();
             $payload_fields = array(
                 "amount"=> $amount,
@@ -49,7 +50,7 @@
                 "customerLastName"=> "$last_name",
                 "customerEmail"=> "$email",
                 "merchantPublicKey"=> "$this->public_key",
-                "transactionName"=> "$description",
+                "transactionName"=> "$item_description",
                 "transactionReference"=> "$transaction_reference",
                 "wallet"=> "$wallet_phone_number",
             );
@@ -61,7 +62,7 @@
             $request_headers = array(
                 'X-PUB-KEY: '.$this->public_key,
                 'Content-Type: application/json'
-            )
+            );
             return json_decode($this->http_post("POST", $this->debit_url, $request_headers, $request_body_fields), true);
         }
         function get_token(){
