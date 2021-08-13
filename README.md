@@ -5,4 +5,3 @@ __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
 
 - Africa
 - The World
-> Checkout **PhP7 branch**, it has latest updates
