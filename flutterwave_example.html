@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Blessed Jason Mwanza">
+    <title>Pay with Flutterwave Example</title>
+</head>
+<body>
+    <button id="pay_button">Buy Item Now</button>
+    <!-- JS  
+        I am using Jquery for this example Jquery JS 
+        And testing for Card Payments (Visa, MasterCard, e.t.c)
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            //trigger payment when the buy button is clicked
+            $('#pay_button').off().click(function(){
+                pay_with_flutterwave();
+            });
+            return;
+        });
+
+        
+        function pay_with_flutterwave(){
+            let email = "customeremail@website.com"; 
+            let phone = "customer_phone_number_with_country_code"; //e.g +2609xxxxxxxx
+            let first_name = "customer_first_name";
+            let last_name = "customer_last_name";
+            let amount = 0.00 //Amount to be paid
+            payment_reference = "12d23sq"; //Unique payment reference string. you can use order IDs e.t.c
+            $.getScript("https://checkout.flutterwave.com/v3.js", function () {
+                FlutterwaveCheckout({
+                    public_key: "your_account_public_key_should be placed here",
+                    tx_ref: payment_reference,
+                    amount: amount,
+                    currency: "country_currency", //e.g ZMW for Zambia
+                    country: "country_International_code",  //e.g ZMB for Zambia
+                    payment_options: "card", //you can use a list like ['card', 'mobile_money'] for multiple payments.
+                    customer: {
+                        email: email,
+                        phone_number: phone,
+                        name: "" + first_name + " " + last_name + "",
+                    },
+                    callback: function (data) {
+                        if(data.status === "successful"){
+                            //Payment succesful. You can take further action from the data received
+                            // put code here for successful transactions
+                        }else{
+                            // Payment failed. Take action based on how you decide to handle failed transactions
+                            // put code in here for failed transactions
+                        }
+                        // THE data response will have an object like the one below. Uncomment for your reference
+
+                        // {
+                        //     amount: 10
+                        //     currency: "USD" 
+                        //     customer: {
+                        //             name: "Flutterwave Developers", 
+                        //             email: "cornelius@gmail.com", 
+                        //             phone_number: "08102909304"
+                        //         }
+                        //     flw_ref: "SMXL9784001344029"
+                        //     status: "successful",
+                        //     tx_ref: "RX1",
+                        //     transaction_id: 2151557
+                        // }
+                    },
+                    onclose: function (status) {
+                        if(status === true){
+                            //Transaction was canceled by user manually
+                        }else{
+                            //Seems like transaction was not manually canceled. 
+                        }
+                    },
+                    customizations: {
+                        title: "Your Company or Business Name",
+                        description: "Short Payment/product description", //E.g 2 White size 2 male jeans 
+                        logo: "full url/link path to your company Logo", //e.g https://mywebsigte.com/logo.png
+                    },
+                });
+            }).fail(function(error){
+                // Flutterwave plugin could not be loaded
+                // show user an error that the payment resource could not be loaded
+            });
+            return;
+        }
+    </script>
+</body>
+</html>
