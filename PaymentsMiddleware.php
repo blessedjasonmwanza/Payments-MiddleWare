@@ -75,7 +75,7 @@
             $request_headers = array(
                 'token: '.$this->get_token()
             );
-            return json_decode($this->http_post("GET", $this->debit_url, $request_headers, $request_body_fields), true);
+            return json_decode($this->http_post("GET", $this->debit_url, $request_headers), true);
         }
     }
 ?> 
