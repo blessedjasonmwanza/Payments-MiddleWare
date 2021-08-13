@@ -10,7 +10,8 @@ require 'PaymentsMiddleware.php';
 $private_key = "";//your sparco private key
 $public_key = ""; //your sparco public (pub) key
 $currency = "ZMW"; //Transaction currency (Optional)
-$mobile_money = new PMMobileMoneyZM($private_key, $public_key);
+$mode = "live"; //default is live. Use sandbox during development/test and live when online/production
+$mobile_money = new PMMobileMoneyZM($private_key, $public_key, $mode);
 $mobile_money->currency = $currency; // (optional) 
 
 /**
