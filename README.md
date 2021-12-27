@@ -74,6 +74,10 @@ if(array_key_exists("isError", $payment_response) && $payment_response['isError'
 }
 ?>
 ```
+> If transaction request is successful, you will get a response like this one(an array but in this example its encoded into json).
+```json
+{"code":201,"isError":false,"message":"Waiting for wallet holder to authorize debit transaction.","reference":"eyJ0aWQiOjM1MTM1NSwiZW52IjoicCJ9","status":"TXN_AUTH_PENDING","transactionReference":"0971943638_1640602121"}
+```
 
 ## Verify Payment
 
