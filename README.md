@@ -1,4 +1,4 @@
-# Payments-MiddleWare
+# Payments-MiddleWare (PHP8+)
 This API MiddleWare contains simplified versions of on-demand payments API's. From local Mobile Money to Visa &amp; Credit Card integrations :-)
 
 __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
@@ -8,9 +8,11 @@ __*Let's simplify online payments for everyone! ... Feel Free to Contribute *__
 
 # Currently in Development
  - *MasterCard, VISA, ECOBANK QR CODE payments*
-# Status
- - Unstable ([Alpha] Ready for Testing.)
+    # Status
+    - Unstable ([Alpha] Ready for Testing.)
 
-# LIVE & READY
+# LIVE & READY FOR USE
  - *Sparco* // for AIRTEL, MTN, & ZAMTEL  Instant mobile Money collections
- > For references on how to use MObile Money Payments, Check **test_mobilemoney_zambia_doc.php**, or **test_mobilemoney_zambia.php** 
+ # SETUP
+ - Create your account here and go to ```Setting``` to obtain both your public and private keys
+ - For references on how to use Mobile Money Payments, Check **[test_mobilemoney_zambia_doc.php]()**, or **test_mobilemoney_zambia.php**

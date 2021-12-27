@@ -23,10 +23,11 @@ $last_name = ""; //customer last name e.g Smith
 $email = ""; //customer email. e.g johnsmith@website.com
 $amount = 0.00; //Amount to be deducted from customer phone number mobile money wallet
 $wallet_phone_number = ""; //customer mobile money number NOTE: it must be 10 characters exactly. e.g 09xxxxxxxx
+$description = ""; //transaction description is optional e.g items bought e.t.c
 
 // Request and Trigger Payment for customer to confirm
 // A prompt confirmation will appear on customers phone to confirm payment
-$payment_response = $mobile_money->request_payment($first_name, $last_name, $email, $amount, $wallet_phone_number); //returns response array
+$payment_response = $mobile_money->request_payment($first_name, $last_name, $email, $amount, $wallet_phone_number, $description); //returns response array
 $response_message = array_key_exists("massage", $payment_response) ? $payment_response['massage'] : $payment_response['message']; //readable response message
 if(array_key_exists("isError", $payment_response) && $payment_response['isError'] === false){
     $reference = $payment_response['reference'];

@@ -12,14 +12,14 @@ use \Firebase\JWT\JWT;
      * Deduct/accept instant payments from all Zambian Networks (ZAMTEL, AIRTEL, MTN)
      */
     class PMMobileMoneyZM{
-        var $public_key;
-        var $private_key;
         var $debit_url;
         var $payment_verification_url;
-        var $currency = "ZMW";
-        function __construct($private_key, $public_key, $mode="live"){
-            $this->public_key = $public_key;
-            $this->private_key = $private_key;
+        function __construct(
+            public string $private_key, 
+            public string $public_key,
+            public string $mode="live",
+            public string $currency = "ZMW"
+        ){
             $this->debit_url = "https://".$mode.".sparco.io/gateway/api/v1/momo/debit";
             $this->payment_verification_url = "https://".$mode.".sparco.io/gateway/api/v1/transaction/query?reference=";
         }
